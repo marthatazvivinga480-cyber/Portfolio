@@ -22,7 +22,7 @@ function Hero() {
 
         <div className="hero-socials">
           <a href="https://github.com/marthatazvivinga480-cyber">GitHub</a>
-          <a href="www.linkedin.com/in/martha-tazvivinga-b307783b0">LinkedIn</a>
+          <a href="https://linkedin.com/in/martha-tazvivinga-b307783b0">LinkedIn</a>
           <a href="https://mail.google.com/mail/?view=cm&fs=1&to=marthatazvivinga480@gmail.com">Email</a>
         </div>
       </div>
