@@ -5,12 +5,12 @@
 }
 
 :root {
-  --content-padding-x: 4px;
-  --content-padding-x-mobile: 6px;
+  --content-padding-x: 24px;
+  --content-padding-x-mobile: 16px;
   --section-padding-y: 64px;
   --card-border: 1px solid rgba(139, 92, 246, 0.15);
   --card-radius: 16px;
-  --max-width: 1600px;
+  --max-width: 1200px;
 }
 
 body {
@@ -33,6 +33,7 @@ body {
   max-width: var(--max-width);
   margin: 0 auto;
   width: 100%;
+  padding-inline: var(--content-padding-x);
 }
 
 a {
@@ -51,7 +52,7 @@ textarea {
   top: 0;
   z-index: 10;
   /* layout is applied to the inner .section-container */
-  padding: 16px var(--content-padding-x);
+  padding: 14px 0;
   background: rgba(8, 11, 23, 0.9);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
@@ -71,7 +72,7 @@ textarea {
 .nav-links {
   display: flex;
   gap: 24px;
-  flex-wrap: wrap;
+  align-items: center;
 }
 
 .nav-links a {
@@ -83,11 +84,34 @@ textarea {
 }
 
 .nav-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 12px 22px;
   border-radius: 999px;
   background: #8b5cf6;
   color: #fff;
   font-weight: 600;
+}
+
+.menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin: 4px 0;
+  border-radius: 999px;
+  background: #f8fafc;
 }
 
 .hero {
@@ -102,12 +126,14 @@ textarea {
 }
 
 .hero-left h1 {
-  font-size: 51px;
+  font-size: clamp(40px, 5vw, 56px);
+  line-height: 1.1;
   margin-bottom: 8px;
 }
 
 .hero-left h2 {
-  font-size: 35px;
+  font-size: clamp(26px, 3.5vw, 36px);
+  line-height: 1.2;
   color: #a78bfa;
   margin-bottom: 24px;
 }
@@ -240,6 +266,14 @@ textarea {
 .about-header h2 {
   font-size: 21px;
   color: #e2e8f0;
+}
+
+.projects-header h2,
+.experience-header h2,
+.certifications-header h2,
+.contact-header h2 {
+  font-size: clamp(28px, 3vw, 34px);
+  line-height: 1.2;
 }
 
 .skills-header h2 {
@@ -441,6 +475,12 @@ textarea {
   font-weight: 600;
 }
 
+.project-link-icon svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
 .cert-card {
   display: flex;
   flex-direction: column;
@@ -521,6 +561,17 @@ textarea {
 }
 
 @media (max-width: 900px) {
+  .hero {
+    min-height: auto;
+    grid-template-columns: 1fr 0.75fr;
+    gap: 24px;
+    padding-block: 72px;
+  }
+
+  .hero-card {
+    border-radius: 24px;
+  }
+
   .about-grid,
   .about-cards {
     grid-template-columns: 1fr;
@@ -544,9 +595,76 @@ textarea {
   }
 }
 
+@media (max-width: 760px) {
+  .navbar {
+    padding: 10px 0;
+  }
+
+  .navbar .section-container {
+    position: relative;
+  }
+
+  .menu-toggle {
+    display: block;
+    margin-left: auto;
+  }
+
+  .nav-button {
+    display: none;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    left: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    background: #12121c;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  }
+
+  .nav-links.is-open {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 12px;
+    border-radius: 8px;
+  }
+
+  .nav-links a:hover {
+    background: rgba(139, 92, 246, 0.16);
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-block: 56px;
+  }
+
+  .hero-right {
+    order: -1;
+  }
+
+  .hero-card {
+    width: min(100%, 300px);
+  }
+
+  .about-grid {
+    gap: 28px;
+  }
+}
+
 @media (max-width: 600px) {
   :root {
     --content-padding-x-mobile: 14px;
+    --content-padding-x: var(--content-padding-x-mobile);
     --section-padding-y: 48px;
   }
   .skills-section,
@@ -560,6 +678,63 @@ textarea {
   .skills-grid,
   .cert-grid {
     grid-template-columns: 1fr;
+  }
+
+  .hero-left h1 {
+    font-size: 38px;
+  }
+
+  .hero-text {
+    margin-bottom: 24px;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .btn {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .hero-socials {
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .about-header,
+  .skills-header,
+  .projects-header,
+  .experience-header,
+  .certifications-header,
+  .contact-header {
+    margin-bottom: 28px;
+  }
+
+  .info-card,
+  .project-content,
+  .experience-card,
+  .contact-card,
+  .contact-form,
+  .cert-card {
+    padding: 20px;
+  }
+
+  .project-links {
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .contact-button {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .footer {
+    padding: 24px 16px;
   }
 
   .form-row {
