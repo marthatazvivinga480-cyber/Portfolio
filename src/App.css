@@ -51,7 +51,6 @@ textarea {
   position: sticky;
   top: 0;
   z-index: 10;
-  /* layout is applied to the inner .section-container */
   padding: 14px 0;
   background: rgba(8, 11, 23, 0.9);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -302,7 +301,10 @@ textarea {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .project-card {
@@ -441,9 +443,19 @@ textarea {
 }
 
 .project-image {
+  width: 100%;
   aspect-ratio: 16 / 10;
   background: rgba(139, 92, 246, 0.15);
   border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+  overflow: hidden;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
 }
 
 .project-tags {
@@ -667,6 +679,7 @@ textarea {
     --content-padding-x: var(--content-padding-x-mobile);
     --section-padding-y: 48px;
   }
+
   .skills-section,
   .projects-section,
   .experience-section,

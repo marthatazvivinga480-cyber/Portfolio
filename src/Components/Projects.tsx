@@ -1,22 +1,49 @@
 function Projects() {
   const projects = [
     {
-      title: "ForgePilot",
+      title: "Tiger Motors",
       description:
-        "Construction project management platform that helps clients and contractors manage budgets, schedules, and tasks.",
+        "A car sale website where users can browse and purchase vehicles.",
       tags: ["React", "Tailwind CSS", "JavaScript"],
+      github: "#",
+      liveDemo: "https://tiger-motors.onrender.com",
+      image: "/product20.png",
     },
     {
       title: "Todo Application",
       description:
         "A simple and efficient task manager app with add, edit, delete, and local storage functionality.",
       tags: ["JavaScript", "HTML", "CSS"],
+      github: "#",
+      liveDemo: "#",
+      image: "/todo-app.png",
     },
     {
-      title: "Weather Application",
+      title: "OAK Foundation",
       description:
-        "A weather app that fetches real-time data from an API and displays forecasts for any city.",
-      tags: ["React", "API", "CSS"],
+        "A web application for the OAK Foundation Event Attendance Platform.",
+      tags: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "API"],
+      github: "#",
+      liveDemo: "https://oak-project-2.vercel.app",
+      image: "/Container (3).png",
+    },
+    {
+      title: "Temperature Converter",
+      description:
+        "A responsive temperature converter that allows users to convert temperatures between Celsius, Fahrenheit, and Kelvin.",
+      tags: ["JavaScript", "HTML", "CSS"],
+      github: "#",
+      liveDemo: "https://temperature-convertor-4310.onrender.com",
+      image: "/temperature-converter.png",
+    },
+    {
+      title: "Landing Page",
+      description:
+        "A responsive modern landing page designed with a clean layout, engaging sections, and an intuitive user experience.",
+      tags: ["HTML", "CSS", "JavaScript"],
+      github: "#",
+      liveDemo: "https://landing-page-pop2.onrender.com",
+      image: "/Landing-page.png",
     },
   ];
 
@@ -31,30 +58,64 @@ function Projects() {
         <div className="projects-grid">
           {projects.map((project) => (
             <article className="project-card" key={project.title}>
-              <div className="project-image" aria-hidden="true" />
+              <div className="project-image">
+                <img
+                  src={project.image}
+                  alt={`${project.title} project`}
+                />
+              </div>
+
               <div className="project-content">
                 <h3>{project.title}</h3>
+
                 <p>{project.description}</p>
+
                 <div className="project-tags">
                   {project.tags.map((tag) => (
                     <span key={tag}>{tag}</span>
                   ))}
                 </div>
+
                 <div className="project-links">
-                  <a href="#">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <span className="project-link-icon">
                       <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M9 6h10v10M19 6 5 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                        <path
+                          d="M9 6h10v10M19 6 5 20"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     </span>
+
                     GitHub
                   </a>
-                  <a href="#">
+
+                  <a
+                    href={project.liveDemo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <span className="project-link-icon">
                       <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M9 6h10v10M19 6 5 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                        <path
+                          d="M9 6h10v10M19 6 5 20"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     </span>
+
                     Live Demo
                   </a>
                 </div>
