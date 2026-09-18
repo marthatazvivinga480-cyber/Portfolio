@@ -9,7 +9,7 @@ function Navbar() {
     <header className="navbar">
       <div className="section-container">
         <div className="logo">
-          <span>My Portfolio</span>
+          <span>Martha Tazvivinga</span>
         </div>
 
         <button

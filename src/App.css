@@ -23,25 +23,54 @@
   --purple-light: #ede9fe;
 }
 
+/* =========================
+   GLOBAL
+========================= */
+
 html {
-  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+
   scroll-behavior: smooth;
   scroll-padding-top: 90px;
 }
 
 body {
-  min-height: 100%;
   width: 100%;
-  overflow-x: hidden;
+  max-width: 100%;
+  min-height: 100vh;
+
+  overflow-x: clip;
+
   background: var(--background);
   color: var(--text-main);
+
   font-family: "Inter", system-ui, sans-serif;
 }
 
-.section-container {
-  max-width: var(--max-width);
-  margin: 0 auto;
+#root {
   width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+
+  overflow-x: clip;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+.section-container {
+  width: 100%;
+  max-width: var(--max-width);
+  min-width: 0;
+
+  margin: 0 auto;
+
   padding-inline: var(--content-padding-x);
 }
 
@@ -63,17 +92,26 @@ textarea {
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 9999;
+
+  width: 100%;
+
+  margin: 0;
   padding: 14px 0;
 
-  background: rgba(255, 255, 255, 0.82);
+  border: 0;
+  border-radius: 0;
 
-  border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.12);
 
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(248, 250, 252, 0.68);
 
-  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+
+  box-shadow: 0 4px 25px rgba(15, 23, 42, 0.06);
+
+  overflow: visible;
 
   transition:
     background 0.3s ease,
@@ -81,29 +119,73 @@ textarea {
     padding 0.3s ease;
 }
 
+/* Navbar background stays full width,
+   but navbar content stays centered */
 .navbar .section-container {
-  display: flex;
+  width: calc(100% - 48px);
+  max-width: var(--max-width);
+  min-width: 0;
+
+  margin: 0 auto;
+  padding: 0;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(max-content, 1fr)
+    auto
+    minmax(max-content, 1fr);
+
   align-items: center;
-  justify-content: space-between;
+
+  column-gap: 32px;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+  justify-self: start;
+  flex-shrink: 0;
 }
 
 .logo span {
   font-weight: 700;
   font-size: 21px;
+
   letter-spacing: 0.1em;
+
   color: var(--text-main);
+
+  white-space: nowrap;
 }
 
+/* =========================
+   NAV LINKS
+========================= */
+
 .nav-links {
+  justify-self: center;
+
   display: flex;
-  gap: 24px;
+
   align-items: center;
+  justify-content: center;
+
+  gap: 24px;
+
+  min-width: 0;
 }
 
 .nav-links a {
   position: relative;
-  color: var(--text-secondary);
+
   padding: 8px 0;
+
+  color: var(--text-secondary);
+
+  white-space: nowrap;
 
   transition:
     color 0.25s ease,
@@ -112,15 +194,18 @@ textarea {
 
 .nav-links a::after {
   content: "";
+
   position: absolute;
+
   left: 50%;
   bottom: 0;
 
   width: 0;
   height: 2px;
 
-  background: var(--purple);
   border-radius: 999px;
+
+  background: var(--purple);
 
   transform: translateX(-50%);
 
@@ -129,6 +214,7 @@ textarea {
 
 .nav-links a:hover {
   color: var(--purple);
+
   transform: translateY(-2px);
 }
 
@@ -144,24 +230,35 @@ textarea {
   width: 100%;
 }
 
-/* LET'S TALK BUTTON */
+/* =========================
+   LET'S TALK BUTTON
+========================= */
 
 .nav-button {
+  justify-self: end;
+
+  position: relative;
+
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
 
-  position: relative;
+  flex-shrink: 0;
+
   overflow: hidden;
 
   padding: 12px 22px;
 
+  border: 0;
   border-radius: 999px;
 
   background: var(--purple);
   color: #ffffff;
 
   font-weight: 600;
+
+  white-space: nowrap;
 
   box-shadow:
     0 6px 18px rgba(139, 92, 246, 0.22);
@@ -174,6 +271,7 @@ textarea {
 
 .nav-button::before {
   content: "";
+
   position: absolute;
 
   top: 0;
@@ -220,9 +318,12 @@ textarea {
   width: 44px;
   height: 44px;
 
+  flex-shrink: 0;
+
   padding: 10px;
 
   border: 1px solid #d1d5db;
+
   border-radius: 10px;
 
   background: #ffffff;
@@ -262,38 +363,56 @@ textarea {
 ========================= */
 
 .hero {
+  width: 100%;
+  max-width: var(--max-width);
+  min-width: 0;
+
   min-height: 88vh;
 
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+
+  grid-template-columns:
+    minmax(0, 1.2fr)
+    minmax(0, 0.8fr);
 
   gap: 40px;
 
   align-items: center;
 
-  padding: 40px var(--content-padding-x) 32px;
-
-  max-width: var(--max-width);
+  padding:
+    40px
+    var(--content-padding-x)
+    32px;
 
   margin: 0 auto;
 }
 
-.hero-left h1 {
-  font-size: clamp(40px, 5vw, 56px);
-  line-height: 1.1;
+.hero-left {
+  min-width: 0;
+}
 
+.hero-left h1 {
   margin-bottom: 8px;
 
+  font-size: clamp(40px, 5vw, 56px);
+
+  line-height: 1.1;
+
   color: var(--text-main);
+
+  overflow-wrap: break-word;
 }
 
 .hero-left h2 {
+  margin-bottom: 24px;
+
   font-size: clamp(26px, 3.5vw, 36px);
+
   line-height: 1.2;
 
   color: var(--purple);
 
-  margin-bottom: 24px;
+  overflow-wrap: break-word;
 }
 
 .hero-text {
@@ -304,20 +423,24 @@ textarea {
   color: var(--text-secondary);
 
   line-height: 1.6;
+
+  overflow-wrap: break-word;
 }
 
 .hero-actions {
   display: flex;
 
-  gap: 16px;
-
   flex-wrap: wrap;
+
+  gap: 16px;
 
   margin-bottom: 32px;
 }
 
 .hero-socials {
   display: flex;
+
+  flex-wrap: wrap;
 
   gap: 16px;
 
@@ -343,10 +466,11 @@ textarea {
 .hero-right {
   display: flex;
 
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
   width: 100%;
+  min-width: 0;
 
   padding-inline: 12px;
 }
@@ -357,14 +481,7 @@ textarea {
 
   aspect-ratio: 1 / 1;
 
-  border-radius: 32px;
-
-  background: var(--purple-light);
-
-  border: 1px solid #ddd6fe;
-
-  box-shadow:
-    0 20px 50px rgba(15, 23, 42, 0.12);
+  margin: 0 auto;
 
   display: flex;
 
@@ -373,21 +490,29 @@ textarea {
 
   overflow: hidden;
 
-  margin: 0 auto;
+  border: 1px solid #ddd6fe;
+
+  border-radius: 32px;
+
+  background: var(--purple-light);
+
+  box-shadow:
+    0 20px 50px rgba(15, 23, 42, 0.12);
 
   animation:
-    floatProfile 4s ease-in-out infinite;
+    floatProfile
+    4s ease-in-out infinite;
 }
 
 .hero-avatar {
+  display: block;
+
   width: 100%;
   height: 100%;
 
   object-fit: cover;
 
   object-position: center top;
-
-  display: block;
 
   transition: transform 0.6s ease;
 }
@@ -441,9 +566,9 @@ textarea {
 .btn-secondary {
   border: 1px solid #d1d5db;
 
-  color: var(--text-main);
-
   background: #ffffff;
+
+  color: var(--text-main);
 }
 
 .btn-secondary:hover {
@@ -463,6 +588,9 @@ textarea {
 .experience-section,
 .certifications-section,
 .contact-section {
+  width: 100%;
+  max-width: 100%;
+
   padding:
     var(--section-padding-y)
     var(--content-padding-x);
@@ -566,6 +694,8 @@ textarea {
 .contact-card,
 .contact-form,
 .cert-card {
+  min-width: 0;
+
   padding: 24px;
 
   display: flex;
@@ -580,9 +710,15 @@ textarea {
     border-color 0.35s ease;
 }
 
-/* PROJECT CARD */
+/* =========================
+   PROJECT CARD
+========================= */
 
 .project-card {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
   padding: 0;
 
   overflow: hidden;
@@ -597,22 +733,31 @@ textarea {
     border-color 0.35s ease;
 }
 
-/* EXPERIENCE CARD */
+/* =========================
+   EXPERIENCE CARD
+========================= */
 
 .experience-card {
-  transform-style: preserve-3d;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 
-  will-change: transform;
+  transform-style:
+    preserve-3d;
+
+  will-change:
+    transform;
 }
-
-/* perspective for tilt */
 
 .projects-grid,
 .experience-grid {
-  perspective: 1200px;
+  perspective:
+    1200px;
 }
 
-/* PROJECT + EXPERIENCE HOVER LIFT AND TILT */
+/* =========================
+   PROJECT + EXPERIENCE HOVER
+========================= */
 
 .project-card:hover,
 .experience-card:hover {
@@ -630,8 +775,6 @@ textarea {
     rgba(139, 92, 246, 0.4);
 }
 
-/* alternate tilt direction */
-
 .project-card:nth-child(even):hover,
 .experience-card:nth-child(even):hover {
   transform:
@@ -641,13 +784,16 @@ textarea {
     scale(1.01);
 }
 
-/* OTHER CARDS */
+/* =========================
+   OTHER CARDS
+========================= */
 
 .info-card:hover,
 .contact-card:hover,
 .contact-form:hover,
 .cert-card:hover {
-  transform: translateY(-5px);
+  transform:
+    translateY(-5px);
 
   box-shadow:
     0 14px 32px
@@ -668,6 +814,9 @@ textarea {
   font-size: 17px;
 
   font-weight: 700;
+
+  overflow-wrap:
+    break-word;
 }
 
 /* =========================
@@ -679,20 +828,21 @@ textarea {
   width: 40px;
   height: 40px;
 
+  flex-shrink: 0;
+
+  display: grid;
+
+  place-items: center;
+
   border-radius: 50%;
 
   background: var(--purple);
 
   color: #ffffff;
 
-  display: grid;
-
-  place-items: center;
-
-  flex-shrink: 0;
-
   box-shadow:
-    0 6px 16px rgba(139, 92, 246, 0.18);
+    0 6px 16px
+    rgba(139, 92, 246, 0.18);
 
   transition:
     transform 0.3s ease,
@@ -736,12 +886,14 @@ textarea {
 .skill-list li,
 .experience-meta,
 .experience-list li {
-  color:
-    var(--text-secondary);
+  color: var(--text-secondary);
 
   font-size: 15px;
 
   line-height: 1.6;
+
+  overflow-wrap:
+    break-word;
 }
 
 .about-text p {
@@ -760,20 +912,20 @@ textarea {
 }
 
 .experience-list li {
-  padding-left: 13px;
-
   position: relative;
+
+  padding-left: 13px;
 }
 
 .experience-list li::before {
   content: "•";
 
-  color: var(--purple);
-
   position: absolute;
 
   left: 0;
   top: 0;
+
+  color: var(--purple);
 }
 
 .experience-org {
@@ -787,10 +939,14 @@ textarea {
 ========================= */
 
 .about-grid {
+  width: 100%;
+  min-width: 0;
+
   display: grid;
 
   grid-template-columns:
-    1fr 1fr;
+    minmax(0, 1fr)
+    minmax(0, 1fr);
 
   gap: 40px;
 
@@ -800,33 +956,47 @@ textarea {
 .about-cards,
 .projects-grid,
 .experience-grid {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
   display: grid;
 
   grid-template-columns:
-    repeat(3, 1fr);
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
 
   gap: 24px;
-
-  min-width: 0;
 }
 
 .skills-grid,
 .cert-grid {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
   display: grid;
 
   grid-template-columns:
-    repeat(4, 1fr);
+    repeat(
+      4,
+      minmax(0, 1fr)
+    );
 
   gap: 24px;
-
-  min-width: 0;
 }
 
 .contact-grid {
+  width: 100%;
+  min-width: 0;
+
   display: grid;
 
   grid-template-columns:
-    0.9fr 1.1fr;
+    minmax(0, 0.9fr)
+    minmax(0, 1.1fr);
 
   gap: 32px;
 
@@ -834,6 +1004,8 @@ textarea {
 }
 
 .skill-column {
+  min-width: 0;
+
   display: flex;
 
   flex-direction: column;
@@ -842,6 +1014,8 @@ textarea {
 }
 
 .skill-category {
+  min-width: 0;
+
   display: flex;
 
   align-items: center;
@@ -855,22 +1029,25 @@ textarea {
 
 .project-image {
   width: 100%;
+  max-width: 100%;
 
-  aspect-ratio: 16 / 10;
+  aspect-ratio:
+    16 / 10;
+
+  overflow: hidden;
 
   background: #f1f5f9;
 
   border-bottom:
     1px solid var(--border);
-
-  overflow: hidden;
 }
 
 .project-image img {
-  width: 100%;
-  height: 100%;
-
   display: block;
+
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
 
   object-fit: cover;
 
@@ -881,7 +1058,8 @@ textarea {
 }
 
 .project-card:hover .project-image img {
-  transform: scale(1.05);
+  transform:
+    scale(1.05);
 }
 
 /* =========================
@@ -894,9 +1072,13 @@ textarea {
   flex-wrap: wrap;
 
   gap: 8px;
+
+  min-width: 0;
 }
 
 .project-tags span {
+  max-width: 100%;
+
   padding: 6px 10px;
 
   border-radius: 999px;
@@ -920,7 +1102,8 @@ textarea {
   transform:
     translateY(-2px);
 
-  background: #ddd6fe;
+  background:
+    #ddd6fe;
 }
 
 /* =========================
@@ -928,7 +1111,11 @@ textarea {
 ========================= */
 
 .project-links {
+  min-width: 0;
+
   display: flex;
+
+  flex-wrap: wrap;
 
   gap: 16px;
 }
@@ -940,8 +1127,7 @@ textarea {
 
   gap: 6px;
 
-  color:
-    var(--purple-dark);
+  color: var(--purple-dark);
 
   font-size: 14px;
 
@@ -953,7 +1139,8 @@ textarea {
 }
 
 .project-links a:hover {
-  color: #6d28d9;
+  color:
+    #6d28d9;
 
   transform:
     translateX(2px);
@@ -979,11 +1166,17 @@ textarea {
 ========================= */
 
 .cert-card {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
   display: flex;
 
   flex-direction: column;
 
   gap: 10px;
+
+  padding: 24px;
 
   border:
     var(--card-border);
@@ -992,8 +1185,6 @@ textarea {
     var(--card-radius);
 
   background: #ffffff;
-
-  padding: 24px;
 
   box-shadow:
     0 4px 18px
@@ -1006,49 +1197,67 @@ textarea {
   line-height: 1.4;
 
   color: var(--text-main);
+
+  overflow-wrap:
+    break-word;
 }
 
 .cert-meta {
-  color:
-    var(--text-secondary);
+  color: var(--text-secondary);
 
   font-size: 14px;
 }
 
 .cert-link {
-  color:
-    var(--purple-dark);
+  color: var(--purple-dark);
 
   font-size: 14px;
 
   font-weight: 600;
+
+  overflow-wrap:
+    anywhere;
 
   transition:
     color 0.2s ease;
 }
 
 .cert-link:hover {
-  color: #6d28d9;
+  color:
+    #6d28d9;
 }
 
 /* =========================
    CONTACT
 ========================= */
 
+.contact-card,
+.contact-form {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
 .contact-card p {
-  color:
-    var(--text-secondary);
+  color: var(--text-secondary);
 
   font-size: 15px;
 
   line-height: 1.8;
+
+  overflow-wrap:
+    break-word;
 }
 
 .form-row {
+  width: 100%;
+  min-width: 0;
+
   display: grid;
 
   grid-template-columns:
-    1fr 1fr;
+    minmax(0, 1fr)
+    minmax(0, 1fr);
 
   gap: 14px;
 }
@@ -1056,6 +1265,10 @@ textarea {
 .contact-form input,
 .contact-form textarea {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  padding: 14px 16px;
 
   border:
     1px solid #d1d5db;
@@ -1065,8 +1278,6 @@ textarea {
   background: #f8fafc;
 
   color: var(--text-main);
-
-  padding: 14px 16px;
 
   font-size: 15px;
 
@@ -1099,8 +1310,7 @@ textarea {
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-  color:
-    var(--text-muted);
+  color: var(--text-muted);
 }
 
 .contact-form textarea {
@@ -1112,11 +1322,11 @@ textarea {
 .contact-button {
   align-self: flex-start;
 
+  padding: 13px 22px;
+
   border: 0;
 
   border-radius: 999px;
-
-  padding: 13px 22px;
 
   background: var(--purple);
 
@@ -1153,6 +1363,9 @@ textarea {
 ========================= */
 
 .footer {
+  width: 100%;
+  max-width: 100%;
+
   padding: 32px;
 
   text-align: center;
@@ -1167,22 +1380,18 @@ textarea {
     1px solid var(--border);
 }
 
-/* ==================================
-   STAGGERED PROJECT CARD ANIMATION
-================================== */
-
-/*
-The cards start slightly lower and fade into place.
-The different animation ranges cause them to enter
-one after another while scrolling into Projects.
-*/
+/* =========================
+   PROJECT CARD ANIMATION
+========================= */
 
 @supports (animation-timeline: view()) {
   .project-card {
     animation:
-      projectCardReveal linear both;
+      projectCardReveal
+      linear both;
 
-    animation-timeline: view();
+    animation-timeline:
+      view();
   }
 
   .project-card:nth-child(1) {
@@ -1229,12 +1438,16 @@ one after another while scrolling into Projects.
 @keyframes projectCardReveal {
   from {
     opacity: 0;
-    translate: 0 35px;
+
+    translate:
+      0 35px;
   }
 
   to {
     opacity: 1;
-    translate: 0 0;
+
+    translate:
+      0 0;
   }
 }
 
@@ -1252,6 +1465,35 @@ one after another while scrolling into Projects.
 }
 
 /* =========================
+   NAVBAR TABLET
+========================= */
+
+@media (max-width: 1100px) and (min-width: 761px) {
+  .navbar .section-container {
+    width: calc(100% - 32px);
+
+    column-gap: 20px;
+  }
+
+  .nav-links {
+    gap: 16px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+
+  .nav-button {
+    padding:
+      11px 18px;
+  }
+
+  .logo span {
+    font-size: 19px;
+  }
+}
+
+/* =========================
    TABLET
 ========================= */
 
@@ -1260,7 +1502,8 @@ one after another while scrolling into Projects.
     min-height: auto;
 
     grid-template-columns:
-      1fr 0.75fr;
+      minmax(0, 1fr)
+      minmax(0, 0.75fr);
 
     gap: 24px;
 
@@ -1273,26 +1516,35 @@ one after another while scrolling into Projects.
 
   .about-grid,
   .about-cards {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      minmax(0, 1fr);
   }
 
   .skills-grid {
     grid-template-columns:
-      repeat(2, 1fr);
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
   }
 
   .projects-grid,
   .experience-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      minmax(0, 1fr);
   }
 
   .cert-grid {
     grid-template-columns:
-      repeat(2, 1fr);
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
   }
 
   .contact-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      minmax(0, 1fr);
   }
 }
 
@@ -1302,11 +1554,50 @@ one after another while scrolling into Projects.
 
 @media (max-width: 760px) {
   .navbar {
+    position: sticky;
+    top: 0;
+
+    z-index: 9999;
+
+    width: 100%;
+
+    margin: 0;
+
     padding: 10px 0;
+
+    border-radius: 0;
+
+    background:
+      rgba(248, 250, 252, 0.7);
+
+    backdrop-filter:
+      blur(18px)
+      saturate(180%);
+
+    -webkit-backdrop-filter:
+      blur(18px)
+      saturate(180%);
   }
 
   .navbar .section-container {
     position: relative;
+
+    width: calc(100% - 28px);
+    max-width: 100%;
+
+    min-width: 0;
+
+    margin: 0 auto;
+    padding: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    column-gap: 16px;
+
+    border-radius: 0;
   }
 
   .menu-toggle {
@@ -1328,6 +1619,9 @@ one after another while scrolling into Projects.
     right: 0;
     left: 0;
 
+    width: 100%;
+    max-width: 100%;
+
     display: none;
 
     flex-direction: column;
@@ -1344,10 +1638,13 @@ one after another while scrolling into Projects.
     border-radius: 14px;
 
     background:
-      rgba(255, 255, 255, 0.96);
+      rgba(255, 255, 255, 0.9);
 
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter:
+      blur(18px);
+
+    -webkit-backdrop-filter:
+      blur(18px);
 
     box-shadow:
       0 18px 40px
@@ -1363,9 +1660,13 @@ one after another while scrolling into Projects.
   }
 
   .nav-links a {
+    width: 100%;
+
     padding: 12px;
 
     border-radius: 8px;
+
+    white-space: normal;
   }
 
   .nav-links a::after {
@@ -1373,16 +1674,19 @@ one after another while scrolling into Projects.
   }
 
   .nav-links a:hover {
-    background: #f3f0ff;
+    background:
+      #f3f0ff;
 
-    color: var(--purple);
+    color:
+      var(--purple);
 
     transform:
       translateX(4px);
   }
 
   .hero {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      minmax(0, 1fr);
 
     gap: 40px;
 
@@ -1401,7 +1705,20 @@ one after another while scrolling into Projects.
   .about-grid {
     gap: 28px;
   }
+
+  .project-card:hover,
+  .experience-card:hover,
+  .project-card:nth-child(even):hover,
+  .experience-card:nth-child(even):hover {
+    transform:
+      translateY(-5px)
+      scale(1.005);
+  }
 }
+
+/* =========================
+   MOBILE MENU ANIMATION
+========================= */
 
 @keyframes mobileMenuOpen {
   from {
@@ -1437,19 +1754,43 @@ one after another while scrolling into Projects.
       48px;
   }
 
+  .about-section,
   .skills-section,
   .projects-section,
   .experience-section,
   .contact-section,
   .certifications-section {
+    width: 100%;
+
     padding:
       var(--section-padding-y)
       var(--content-padding-x-mobile);
   }
 
+  .section-container {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .navbar .section-container {
+    width: calc(100% - 28px);
+
+    margin: 0 auto;
+    padding: 0;
+  }
+
   .skills-grid,
   .cert-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      minmax(0, 1fr);
+  }
+
+  .hero {
+    width: 100%;
+
+    grid-template-columns:
+      minmax(0, 1fr);
   }
 
   .hero-left h1 {
@@ -1463,7 +1804,8 @@ one after another while scrolling into Projects.
   .hero-actions {
     display: grid;
 
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      minmax(0, 1fr);
 
     gap: 12px;
 
@@ -1477,6 +1819,8 @@ one after another while scrolling into Projects.
   }
 
   .hero-socials {
+    width: 100%;
+
     justify-content:
       space-between;
 
@@ -1520,18 +1864,52 @@ one after another while scrolling into Projects.
   }
 
   .form-row {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      minmax(0, 1fr);
+  }
+}
+
+/* =========================
+   EXTRA SMALL MOBILE
+========================= */
+
+@media (max-width: 420px) {
+  .hero-left h1 {
+    font-size: 34px;
   }
 
-  /* less aggressive tilt on touch/mobile */
+  .hero-left h2 {
+    font-size: 24px;
+  }
 
-  .project-card:hover,
-  .experience-card:hover,
-  .project-card:nth-child(even):hover,
-  .experience-card:nth-child(even):hover {
-    transform:
-      translateY(-5px)
-      scale(1.005);
+  .section-eyebrow,
+  .about-header span {
+    font-size: 12px;
+
+    letter-spacing:
+      0.11em;
+  }
+
+  .hero-socials {
+    justify-content:
+      flex-start;
+
+    flex-wrap: wrap;
+
+    column-gap: 14px;
+
+    row-gap: 10px;
+  }
+
+  .project-links {
+    justify-content:
+      flex-start;
+
+    flex-wrap: wrap;
+  }
+
+  .logo span {
+    font-size: 18px;
   }
 }
 
@@ -1548,18 +1926,19 @@ one after another while scrolling into Projects.
   *::before,
   *::after {
     animation-duration:
-      0.01ms !important;
+      0.01ms;
 
     animation-iteration-count:
-      1 !important;
+      1;
 
     transition-duration:
-      0.01ms !important;
+      0.01ms;
   }
 
   .project-card,
   .experience-card,
   .hero-card {
-    transform: none !important;
+    transform:
+      none;
   }
 }

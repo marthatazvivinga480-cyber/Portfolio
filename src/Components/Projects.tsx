@@ -13,7 +13,7 @@ function Projects() {
       title: "Todo Application",
       description:
         "A simple and efficient task manager app with add, edit, delete, and local storage functionality.",
-      tags: ["JavaScript", "HTML", "CSS"],
+      tags: ["Python", "HTML", "CSS"],
       github: "#",
       liveDemo: "#",
       image: "/todo-app.png",
@@ -25,7 +25,7 @@ function Projects() {
       tags: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "API"],
       github: "#",
       liveDemo: "https://oak-project-2.vercel.app",
-      image: "/Container (3).png",
+      image: "/Oak-Foundation.png",
     },
     {
       title: "Temperature Converter",

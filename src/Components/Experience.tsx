@@ -21,7 +21,7 @@ function Experience() {
       ],
     },
     {
-      title: "Scratch Coding Volunteer",
+      title: "Youth Coding Instructor",
       organization: "Primary Schools, Harare",
       period: "2026 - Present",
       bullets: [
