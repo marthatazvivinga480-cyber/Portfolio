@@ -56,7 +56,7 @@ function Hero() {
       <div className="hero-right">
         <div className="hero-card">
           <img
-            src="/IMG-20260218-WA0001.jpg"
+            src="/hero-plain-background.png"
             alt="Martha Tazvivinga"
             className="hero-avatar"
           />

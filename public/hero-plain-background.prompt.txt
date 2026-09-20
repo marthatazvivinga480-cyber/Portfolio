@@ -1,0 +1,2 @@
+Tool: built-in image_gen
+Edit target: the supplied portrait for a portfolio hero image. Replace only the existing room background with a plain solid very light cool gray background (#f1f3f7), with no texture, objects, gradient or text. Preserve the woman exactly: identity, facial features, skin tone, expression, makeup, hair, pose, navy blazer, white shirt, original lighting and original portrait framing. Keep natural precise hair edges. Do not retouch or reshape the person.
