@@ -1,27 +1,21 @@
-import { count } from "console";
-import { useState,useEffect } from "react";
-import {createRoot} from 'react-dom/client';
+import { useState, useEffect } from "react";
 
 const UseEffect = () => {
+  const [message, setMessage] = useState("Waiting...");
 
-    const [message, setMessage] = useState("Waiting...")
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMessage("Hello after 3 seconds!");
+    }, 3000);
 
-    useEffect(()=>{
-        const timer = setTimeout(()=>{
-            setMessage("Hello after 3 seconds!")
-        }, 3000)
-    })
-
-    return () => {
-        clearTimeout(timer)
-    };
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div>
-        <h1>{message}</h1>
+      <h1>{message}</h1>
     </div>
-  )
-}
+  );
+};
 
-export default UseEffect
-
+export default UseEffect;

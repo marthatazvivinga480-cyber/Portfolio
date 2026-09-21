@@ -17,15 +17,15 @@ function Certifications() {
     {
       title: "React Basics",
       issuer: "Meta",
-      date: "placeholder date",
-      link: "#",
+      date: "",
+      link: "",
       external: false,
     },
     {
       title: "Introduction to Software Engineering",
       issuer: "IBM",
-      date: "placeholder date",
-      link: "#",
+      date: "",
+      link: "",
       external: false,
     },
   ];
@@ -46,14 +46,14 @@ function Certifications() {
                 <span>{cert.issuer}</span>
                 {cert.date ? <span> • {cert.date}</span> : null}
               </p>
-              <a
+              {cert.link ? <a
                 href={cert.link}
                 target={cert.external ? "_blank" : undefined}
                 rel={cert.external ? "noopener noreferrer" : undefined}
                 className="cert-link"
               >
                 View Certificate →
-              </a>
+              </a> : <span className="cert-meta">Certificate link unavailable</span>}
             </div>
           ))}
         </div>

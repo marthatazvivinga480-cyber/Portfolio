@@ -1,3 +1,5 @@
+import { ArrowUpRight } from "lucide-react";
+
 function Projects() {
   const projects = [
     {
@@ -5,7 +7,7 @@ function Projects() {
       description:
         "A car sale website where users can browse and purchase vehicles.",
       tags: ["React", "Tailwind CSS", "JavaScript"],
-      github: "#",
+      github: "",
       liveDemo: "https://tiger-motors.onrender.com",
       image: "/product20.png",
     },
@@ -14,8 +16,8 @@ function Projects() {
       description:
         "A simple and efficient task manager app with add, edit, delete, and local storage functionality.",
       tags: ["Python", "HTML", "CSS"],
-      github: "#",
-      liveDemo: "#",
+      github: "",
+      liveDemo: "",
       image: "/todo-app.png",
     },
     {
@@ -23,7 +25,7 @@ function Projects() {
       description:
         "A web application for the OAK Foundation Event Attendance Platform.",
       tags: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "API"],
-      github: "#",
+      github: "",
       liveDemo: "https://oak-project-2.vercel.app",
       image: "/Oak-Foundation.png",
     },
@@ -32,7 +34,7 @@ function Projects() {
       description:
         "A responsive temperature converter that allows users to convert temperatures between Celsius, Fahrenheit, and Kelvin.",
       tags: ["JavaScript", "HTML", "CSS"],
-      github: "#",
+      github: "",
       liveDemo: "https://temperature-convertor-4310.onrender.com",
       image: "/temperature-converter.png",
     },
@@ -41,7 +43,7 @@ function Projects() {
       description:
         "A responsive modern landing page designed with a clean layout, engaging sections, and an intuitive user experience.",
       tags: ["HTML", "CSS", "JavaScript"],
-      github: "#",
+      github: "",
       liveDemo: "https://landing-page-pop2.onrender.com",
       image: "/Landing-page.png",
     },
@@ -77,47 +79,29 @@ function Projects() {
                 </div>
 
                 <div className="project-links">
-                  <a
+                  {project.github ? <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     <span className="project-link-icon">
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                          d="M9 6h10v10M19 6 5 20"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.8"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
+                      <ArrowUpRight aria-hidden="true" strokeWidth={1.8} />
                     </span>
 
                     GitHub
-                  </a>
+                  </a> : <span>GitHub unavailable</span>}
 
-                  <a
+                  {project.liveDemo ? <a
                     href={project.liveDemo}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     <span className="project-link-icon">
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                          d="M9 6h10v10M19 6 5 20"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.8"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
+                      <ArrowUpRight aria-hidden="true" strokeWidth={1.8} />
                     </span>
 
                     Live Demo
-                  </a>
+                  </a> : <span>Demo unavailable</span>}
                 </div>
               </div>
             </article>
