@@ -28,13 +28,12 @@ function Contact() {
             <p>Harare, Zimbabwe</p>
           </div>
 
-          <form className="contact-form" onSubmit={handleSubmit} aria-describedby="contact-help">
+          <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-row">
               <input type="text" name="name" aria-label="Your Name" autoComplete="name" placeholder="Your Name" required />
               <input type="email" name="email" aria-label="Your Email" autoComplete="email" placeholder="Your Email" required />
             </div>
             <textarea name="message" aria-label="Your Message" placeholder="Your Message" rows={6} required />
-            <p id="contact-help">Opens your email app with a draft for you to send. You can also email marthatazvivinga@gmail.com directly.</p>
             <button type="submit" className="contact-button">
               Open Email Draft
             </button>

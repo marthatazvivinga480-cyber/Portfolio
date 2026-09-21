@@ -17,7 +17,7 @@ function Projects() {
         "A simple and efficient task manager app with add, edit, delete, and local storage functionality.",
       tags: ["Python", "HTML", "CSS"],
       github: "",
-      liveDemo: "",
+      liveDemo: "https://django-todo-lr70.onrender.com/",
       image: "/todo-app.png",
     },
     {

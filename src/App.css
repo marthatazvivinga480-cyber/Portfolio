@@ -402,6 +402,35 @@ textarea {
   overflow-wrap: break-word;
 }
 
+.hero-subtitle {
+  display: grid;
+}
+
+.hero-subtitle-placeholder,
+.hero-subtitle-text {
+  grid-area: 1 / 1;
+  padding-right: 0.2em;
+}
+
+.hero-subtitle-placeholder {
+  visibility: hidden;
+}
+
+.hero-typing-cursor {
+  display: inline-block;
+  height: 0.95em;
+  border-right: 2px solid currentColor;
+  margin-left: 0.08em;
+  vertical-align: -0.08em;
+  animation: hero-cursor-blink 0.8s step-end infinite;
+}
+
+@keyframes hero-cursor-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
 .hero-text {
   max-width: 544px;
 
@@ -1855,6 +1884,10 @@ textarea {
 ========================= */
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-typing-cursor {
+    display: none;
+  }
+
   html {
     scroll-behavior: auto;
   }

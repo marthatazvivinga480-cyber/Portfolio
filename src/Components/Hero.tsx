@@ -1,10 +1,54 @@
+import { useEffect, useState } from "react";
+
+const title = "Frontend Developer";
+
 function Hero() {
+  const [subtitle, setSubtitle] = useState(title);
+
+  useEffect(() => {
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let timer: ReturnType<typeof setTimeout>;
+
+    const startTyping = () => {
+      clearTimeout(timer);
+      if (preference.matches) {
+        setSubtitle(title);
+        return;
+      }
+
+      let characters = 0;
+      setSubtitle("");
+      const typeCharacter = () => {
+        characters += 1;
+        setSubtitle(title.slice(0, characters));
+        if (characters < title.length) {
+          timer = setTimeout(typeCharacter, 100);
+        }
+      };
+      timer = setTimeout(typeCharacter, 350);
+    };
+
+    startTyping();
+    preference.addEventListener("change", startTyping);
+    return () => {
+      clearTimeout(timer);
+      preference.removeEventListener("change", startTyping);
+    };
+  }, []);
+
   return (
     <section id="home" className="hero">
       <div className="hero-left">
         <p className="hero-tag">Hi, I'm</p>
         <h1>Martha Tazvivinga</h1>
-        <h2>Software Engineer</h2>
+        <h2 className="hero-subtitle" aria-label={title}>
+          <span className="hero-subtitle-placeholder" aria-hidden="true">
+            {title}
+          </span>
+          <span className="hero-subtitle-text" aria-hidden="true">
+            {subtitle}<span className="hero-typing-cursor" />
+          </span>
+        </h2>
 
         <p className="hero-text">
           I build responsive, user-friendly web applications using JavaScript,
