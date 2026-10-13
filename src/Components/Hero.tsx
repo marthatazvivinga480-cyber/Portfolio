@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 const title = "Frontend Developer";
-
 function Hero() {
   const [subtitle, setSubtitle] = useState(title);
 
@@ -105,6 +104,7 @@ function Hero() {
             className="hero-avatar"
           />
         </div>
+
       </div>
     </section>
   );

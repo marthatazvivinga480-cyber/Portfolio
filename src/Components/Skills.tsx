@@ -1,6 +1,42 @@
 import { CodeXml, PanelsTopLeft, Wrench, ListChecks } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 function Skills() {
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const grid = gridRef.current;
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (!grid || !("IntersectionObserver" in window)) return;
+
+    const animations: Animation[] = [];
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting);
+      visible.forEach((entry, index) => {
+        observer.unobserve(entry.target);
+        if (preference.matches) return;
+        animations.push(entry.target.animate(
+          [
+            { opacity: 0, transform: "translateY(16px)" },
+            { opacity: 1, transform: "translateY(0)" },
+          ],
+          { duration: 400, delay: index * 70, easing: "ease-out", fill: "backwards" },
+        ));
+      });
+    }, { threshold: 0.15 });
+
+    grid.querySelectorAll(".skill-column").forEach((card) => observer.observe(card));
+    const stopMotion = () => {
+      if (preference.matches) animations.forEach((animation) => animation.cancel());
+    };
+    preference.addEventListener("change", stopMotion);
+    return () => {
+      observer.disconnect();
+      animations.forEach((animation) => animation.cancel());
+      preference.removeEventListener("change", stopMotion);
+    };
+  }, []);
+
   const skillGroups = [
     {
       title: "Languages",
@@ -32,7 +68,7 @@ function Skills() {
           <h2>What I Work With</h2>
         </div>
 
-        <div className="skills-grid">
+        <div className="skills-grid" ref={gridRef}>
           {skillGroups.map((group) => (
             <div className="skill-column" key={group.title}>
               <div className="skill-category">

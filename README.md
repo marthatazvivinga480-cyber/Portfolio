@@ -23,4 +23,4 @@ Update project links in `src/Components/Projects.tsx` and certificate links in `
 
 ## Contact form
 
-The contact form validates required fields and opens an email draft addressed to the email displayed in the Contact section. It requires a configured email app, and the visitor must send the draft themselves. It does not send mail through a backend or confirm delivery. The email address is also displayed for manual contact.
+The contact form validates required fields and opens a prefilled Gmail draft in a new tab, addressed to the email displayed in the Contact section. The visitor must sign in to Gmail if needed, review the draft, and click Send. It does not send mail through a backend or confirm delivery. The email address is also displayed for manual contact.

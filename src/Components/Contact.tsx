@@ -7,9 +7,14 @@ function Contact() {
     const name = String(data.get("name") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
     const message = String(data.get("message") ?? "").trim();
-    const subject = encodeURIComponent(`Portfolio enquiry from ${name}`);
-    const body = encodeURIComponent(`${message}\n\nFrom: ${name}\nEmail: ${email}`);
-    window.location.href = `mailto:marthatazvivinga@gmail.com?subject=${subject}&body=${body}`;
+    const params = new URLSearchParams({
+      view: "cm",
+      fs: "1",
+      to: "marthatazvivinga@gmail.com",
+      su: `Portfolio enquiry from ${name}`,
+      body: `${message}\n\nFrom: ${name}\nEmail: ${email}`,
+    });
+    window.open(`https://mail.google.com/mail/?${params.toString()}`, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -28,15 +33,18 @@ function Contact() {
             <p>Harare, Zimbabwe</p>
           </div>
 
-          <form className="contact-form" onSubmit={handleSubmit}>
+          <form className="contact-form" onSubmit={handleSubmit} aria-describedby="contact-gmail-help">
             <div className="form-row">
               <input type="text" name="name" aria-label="Your Name" autoComplete="name" placeholder="Your Name" required />
               <input type="email" name="email" aria-label="Your Email" autoComplete="email" placeholder="Your Email" required />
             </div>
             <textarea name="message" aria-label="Your Message" placeholder="Your Message" rows={6} required />
             <button type="submit" className="contact-button">
-              Open Email Draft
+              Open Gmail Draft
             </button>
+            <p id="contact-gmail-help" className="contact-help">
+              Opens Gmail in a new tab. Sign in if needed, then review your message and click Send.
+            </p>
           </form>
         </div>
       </div>
