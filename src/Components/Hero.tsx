@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { Code2, BriefcaseBusiness, Mail } from "lucide-react";
 
-const title = "Frontend Developer";
+const title = "Full-stack Developer";
 function Hero() {
   const [subtitle, setSubtitle] = useState(title);
 
@@ -50,9 +51,7 @@ function Hero() {
         </h2>
 
         <p className="hero-text">
-          I build responsive, user-friendly web applications using JavaScript,
-          React, Python, HTML and CSS. I enjoy solving problems through code and
-          creating digital experiences that make an impact.
+          I build full-stack web applications with React, TypeScript and Next.js, connecting clear interfaces with authentication, APIs and databases.
         </p>
 
         <div className="hero-actions">
@@ -75,7 +74,7 @@ function Hero() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            GitHub
+            <Code2 size={17} aria-hidden="true" /> GitHub
           </a>
 
           <a
@@ -83,15 +82,15 @@ function Hero() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            LinkedIn
+            <BriefcaseBusiness size={17} aria-hidden="true" /> LinkedIn
           </a>
 
           <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=marthatazvivinga480@gmail.com"
+            href="mailto:marthatazvivinga480@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Email
+            <Mail size={17} aria-hidden="true" /> Email
           </a>
         </div>
       </div>
@@ -99,7 +98,9 @@ function Hero() {
       <div className="hero-right">
         <div className="hero-card">
           <img
-            src="/hero-plain-background.png"
+            src="/hero-plain-background.webp"
+            width={600}
+            height={750}
             alt="Martha Tazvivinga"
             className="hero-avatar"
           />

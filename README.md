@@ -23,4 +23,8 @@ Update project links in `src/Components/Projects.tsx` and certificate links in `
 
 ## Contact form
 
-The contact form validates required fields and opens a prefilled Gmail draft in a new tab, addressed to the email displayed in the Contact section. The visitor must sign in to Gmail if needed, review the draft, and click Send. It does not send mail through a backend or confirm delivery. The email address is also displayed for manual contact.
+The form opens a draft in the visitor's configured email app. It does not send mail through a backend or confirm delivery. A direct email link is also provided. All contact links currently use the address from the original hero: marthatazvivinga480@gmail.com.
+
+## Project presentation
+
+Projects are displayed in a responsive grid with technology filters. Sideby, OAK Foundation and NovaCart appear first; expandable build notes distinguish contribution, technical decisions and verification. Sideby is not deployed yet, so only its source link is shown.

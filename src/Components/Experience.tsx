@@ -11,16 +11,6 @@ function Experience() {
       ],
     },
     {
-      title: "BSc Business Management and Entrepreneurship",
-      organization: "Chinhoyi University of Technology",
-      period: "2019 - 2023",
-      bullets: [
-        "Studied core business, finance, and entrepreneurship principles",
-        "Developed strategic planning and leadership skills",
-        "Built foundation in project and stakeholder management",
-      ],
-    },
-    {
       title: "Youth Coding Instructor",
       organization: "Primary Schools, Harare",
       period: "2026 - Present",
@@ -37,7 +27,7 @@ function Experience() {
       <div className="section-container">
         <div className="section-header experience-header">
           <span className="section-eyebrow">EXPERIENCE</span>
-          <h2>Experience</h2>
+          <h2>Experience & education</h2>
         </div>
 
         <div className="experience-grid">
@@ -56,6 +46,7 @@ function Experience() {
             </div>
           ))}
         </div>
+        <div className="portfolio-education"><h3>Education</h3><p><strong>BSc Business Management and Entrepreneurship</strong></p><p>Chinhoyi University of Technology · 2019–2023</p><p>Software Engineering · Uncommon.org · 2026–present</p></div>
       </div>
     </section>
   );

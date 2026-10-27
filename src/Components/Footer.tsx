@@ -17,7 +17,7 @@ function Footer() {
             <div className="footer-socials">
               <a href="https://github.com/marthatazvivinga480-cyber" target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight size={14} aria-hidden="true" /></a>
               <a href="https://linkedin.com/in/martha-tazvivinga-b307783b0" target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight size={14} aria-hidden="true" /></a>
-              <a href="mailto:marthatazvivinga@gmail.com"><Mail size={15} aria-hidden="true" /> Email</a>
+              <a href="mailto:marthatazvivinga480@gmail.com"><Mail size={15} aria-hidden="true" /> Email</a>
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import type { FormEvent } from "react";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 function Contact() {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -7,14 +8,7 @@ function Contact() {
     const name = String(data.get("name") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
     const message = String(data.get("message") ?? "").trim();
-    const params = new URLSearchParams({
-      view: "cm",
-      fs: "1",
-      to: "marthatazvivinga@gmail.com",
-      su: `Portfolio enquiry from ${name}`,
-      body: `${message}\n\nFrom: ${name}\nEmail: ${email}`,
-    });
-    window.open(`https://mail.google.com/mail/?${params.toString()}`, "_blank", "noopener,noreferrer");
+    window.open(`mailto:marthatazvivinga480@gmail.com?subject=${encodeURIComponent(`Portfolio enquiry from ${name}`)}&body=${encodeURIComponent(`${message}\n\nFrom: ${name}\nEmail: ${email}`)}`, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -26,24 +20,27 @@ function Contact() {
         </div>
 
         <div className="contact-grid">
-          <div className="contact-card">
-            <h3>Get in Touch</h3>
-            <p>marthatazvivinga@gmail.com</p>
-            <p>+263 786 739 044</p>
-            <p>Harare, Zimbabwe</p>
+          <div className="contact-intro">
+            <h3>Have a project in mind?</h3>
+            <p>Let's talk about your next web application.</p>
+            <dl className="contact-methods">
+              <div><Mail aria-hidden="true" size={24} /><div><dt>Email</dt><dd><a href="mailto:marthatazvivinga480@gmail.com">marthatazvivinga480@gmail.com</a></dd></div></div>
+              <div><Phone aria-hidden="true" size={24} /><div><dt>Phone</dt><dd><a href="tel:+263786739044">+263 786 739 044</a></dd></div></div>
+              <div><MapPin aria-hidden="true" size={24} /><div><dt>Location</dt><dd>Harare, Zimbabwe</dd></div></div>
+            </dl>
           </div>
 
-          <form className="contact-form" onSubmit={handleSubmit} aria-describedby="contact-gmail-help">
+          <form className="contact-form" onSubmit={handleSubmit} aria-describedby="contact-email-help">
             <div className="form-row">
-              <input type="text" name="name" aria-label="Your Name" autoComplete="name" placeholder="Your Name" required />
-              <input type="email" name="email" aria-label="Your Email" autoComplete="email" placeholder="Your Email" required />
+              <label htmlFor="contact-name">Name<input id="contact-name" type="text" name="name" autoComplete="name" placeholder="Your name" required maxLength={100} /></label>
+              <label htmlFor="contact-email">Email<input id="contact-email" type="email" name="email" autoComplete="email" placeholder="you@example.com" required maxLength={254} /></label>
             </div>
-            <textarea name="message" aria-label="Your Message" placeholder="Your Message" rows={6} required />
+            <label htmlFor="contact-message">Message<textarea id="contact-message" name="message" placeholder="Tell me a little about your project." rows={5} required maxLength={3000} /></label>
             <button type="submit" className="contact-button">
-              Open Gmail Draft
+              Open email draft
             </button>
-            <p id="contact-gmail-help" className="contact-help">
-              Opens Gmail in a new tab. Sign in if needed, then review your message and click Send.
+            <p id="contact-email-help" className="contact-help">
+              Opens a draft in your email app. Review it there before sending.
             </p>
           </form>
         </div>

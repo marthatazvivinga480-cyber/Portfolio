@@ -24,13 +24,13 @@ function About() {
       <div className="section-container">
         <div className="section-header about-header">
           <span>About Me</span>
-          <h2>Student Software Engineer</h2>
+          <h2>Full-stack Developer</h2>
         </div>
 
         <div className="about-grid">
           <div className="about-text">
             <p>
-              I am an aspiring Software Engineer with a background in Business
+              I am a full-stack developer with a background in Business
               Management and Entrepreneurship. I enjoy building responsive web
               applications, learning new technologies, and turning ideas into
               real-world solutions.
