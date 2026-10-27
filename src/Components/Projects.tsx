@@ -56,6 +56,15 @@ function Projects() {
   }, [activeFilter]);
   const projects = [
     {
+      title: "SafeJourney",
+      description:
+        "A personal-safety platform that helps people plan journeys and stay connected with the people they trust.",
+      tags: ["Web App", "Personal Safety"],
+      github: "",
+      liveDemo: "https://safejourney-three.vercel.app",
+      image: "/safejourney.png",
+    },
+    {
       title: "NovaCart",
       description:
         "NovaCart is a responsive e-commerce web app built with React and Firebase. It features product browsing, user authentication, a shopping cart, Stripe checkout, and order history, with a clean interface across desktop and mobile.",
